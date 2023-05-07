@@ -17,9 +17,23 @@ export async function addHoneyHole(req,res){
 }
 
 // CRUD: DELETE
-export async function deleteHoneyHole(req,res){
-  const docId = { '_id': new ObjectId(req.params.docId)}
+export async function deleteHoneyHole(req, res) {
+  try {
+    const honeyHoleId = {"_id": new ObjectId(req.params.honeyHoleId)};
+    await coll.deleteOne(honeyHoleId);
+    await getAllHoneyHoles(req,res);
+  } catch (error) {
+    res.status(500).send({error: "An error occurred while deleting the honey hole🍯"})
+  }
+}
 
-  await coll.deleteOne(docId)
-  res.status(201).send({message: 'execute order 66 🔫'})
+//CRUD: PATCH
+export async function updateHoneyHole(req,res) {
+  const honeyHoleId = {"_id": new ObjectId(req.params.honeyHoleId)}
+  const updateHoneyHole = { $set: req.body }
+  const returnOption = { returnNewDocument: true}
+  const query = await coll.findOneAndUpdate( honeyHoleId, updateHoneyHole, returnOption)
+  await getAllHoneyHoles(req,res)
+  res.status(201).send({message: "Honey hole has been updated"})
+  console.table(query.value)
 }
