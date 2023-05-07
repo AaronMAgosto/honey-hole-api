@@ -11,7 +11,7 @@
 
  app.get('/honeyholes', getAllHoneyHoles)
  app.post('/honeyholes', addHoneyHole)
- app.delete('/honeyhole/:honeyHoleId', deleteHoneyHole)
+ app.delete('/honeyholes/:honeyHoleId', deleteHoneyHole)
  app.patch('/honeyholes/:honeyHoleId', updateHoneyHole)
 
  app.listen(PORT , () => {
