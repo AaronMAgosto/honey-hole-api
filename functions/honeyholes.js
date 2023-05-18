@@ -22,7 +22,7 @@ export async function deleteHoneyHole(req, res) {
     const honeyHoleId = {"_id": new ObjectId(req.params.honeyHoleId)};
     await coll.deleteOne(honeyHoleId);
     await getAllHoneyHoles(req,res);
-  } catch (error) {
+  } catch (error) { 
     res.status(500).send({error: "An error occurred while deleting the honey hole🍯"})
   }
 }
@@ -37,3 +37,4 @@ export async function updateHoneyHole(req,res) {
   res.status(201).send({message: "Honey hole has been updated"})
   console.table(query.value)
 }
+
