@@ -1,7 +1,6 @@
  import functions from "firebase-functions"
  import express from "express"
  import cors from "cors"
- import { getHoneyHoleByFilter } from "./dbConnect.js"
 
  import { getAllHoneyHoles, addHoneyHole, deleteHoneyHole, updateHoneyHole } from "./honeyholes.js"
 
@@ -11,7 +10,6 @@
  app.use(cors())
  app.use(express.json())
 
- app.get("honeyholes/:filterType/:filterValue", getHoneyHoleByFilter);
  app.get('/honeyholes', getAllHoneyHoles)
  app.post('/honeyholes', addHoneyHole)
  app.delete('/honeyholes/:honeyHoleId', deleteHoneyHole)
